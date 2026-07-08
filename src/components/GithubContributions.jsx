@@ -105,7 +105,7 @@ const GithubContributions = () => {
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
         <p className="font-mono text-sm text-slate">
           <span className="text-paper">{yearTotal}</span> contributions in{" "}
-          {selectedYear}
+          {selectedYear} 
         </p>
         <div className="flex gap-2">
           {years.map((year) => (
