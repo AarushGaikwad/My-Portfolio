@@ -14,9 +14,9 @@ export default {
         display: ["Fraunces", "serif"],
         body: ["Inter", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+        pixel: ["'Press Start 2P'", "monospace"],
       },
     },
   },
   plugins: [],
 }
-
