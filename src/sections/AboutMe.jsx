@@ -5,6 +5,7 @@ import SocialLinks from "../components/SocialLinks";
 import GithubContributions from "../components/GithubContributions";
 import AcademicTimeline from "../components/AcademicTimeline";
 import NetworkGraphBackground from "../components/NetworkGraphBackground";
+import QuestLog from "../components/QuestLog";
 
 const bio = `I'm a backend-focused software engineer who enjoys designing clean,
 scalable systems — REST APIs, well-structured services, and architecture
@@ -64,7 +65,7 @@ const AboutMe = () => {
           transition={{ duration: 0.7 }}
           className="mt-16 w-full flex justify-center"
         >
-          <AcademicTimeline />
+          <QuestLog />
         </motion.div>
 
         <motion.div
