@@ -103,9 +103,31 @@ const GithubContributions = () => {
   return (
     <div className="w-full max-w-3xl mx-auto">
       <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
-        <p className="font-mono text-sm text-slate">
+        <p className="font-mono text-sm text-slate flex items-center gap-1.5">
           <span className="text-paper">{yearTotal}</span> contributions in{" "}
-          {selectedYear} 
+          {selectedYear}
+          <span className="relative inline-flex group">
+            <span
+              tabIndex={0}
+              aria-label="Note about private repository contributions"
+              className="w-4 h-4 rounded-full border border-slate text-slate
+                         text-[10px] flex items-center justify-center cursor-default
+                         hover:border-amber hover:text-amber focus:border-amber
+                         focus:text-amber focus:outline-none"
+            >
+              i
+            </span>
+            <span
+              className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+                         w-56 rounded-md border border-line bg-ink px-3 py-2 text-[11px]
+                         normal-case text-slate opacity-0 group-hover:opacity-100
+                         group-focus-within:opacity-100 transition-opacity duration-200 z-10"
+            >
+              Some contributions may not appear here — GitHub only shows activity
+              from private repositories if you've opted into that in your GitHub
+              profile settings.
+            </span>
+          </span>
         </p>
         <div className="flex gap-2">
           {years.map((year) => (
