@@ -17,6 +17,7 @@ const AboutMe = () => {
   return (
     <section
       id="about"
+      data-unlock-name="About Me"
       className="relative overflow-hidden min-h-screen bg-ink flex flex-col
                  items-center justify-center px-6 pt-32 pb-24 text-center"
     >

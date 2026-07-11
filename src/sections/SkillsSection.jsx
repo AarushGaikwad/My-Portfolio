@@ -125,6 +125,7 @@ const SkillsSection = () => {
   return (
     <section
       id="skills"
+      data-unlock-name="Skills"
       className="bg-ink border-t border-line px-6 py-24 flex flex-col items-center"
     >
       <p className="font-mono text-sm text-slate mb-3">
