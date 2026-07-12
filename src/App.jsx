@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import SectionUnlockToasts from "./components/SectionUnlockToasts";
 import AboutMe from "./sections/AboutMe";
+import ProjectsSection from "./sections/ProjectsSection";
 import SkillsSection from "./sections/SkillsSection";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
     <>
       <AboutMe />
       <SkillsSection />
+      <ProjectsSection />
       <NavBar />
       <ScrollProgressBar />
       <KonamiEasterEgg />
