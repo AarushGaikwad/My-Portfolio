@@ -21,8 +21,6 @@ const projects = [
       Backend: ["Spring Boot", "REST APIs", "Spring Security"],
       Database: ["MySQL"],
     },
-    github: null,
-    demo: null,
   },
   {
     name: "Library Management System",
@@ -39,8 +37,6 @@ const projects = [
       Backend: ["Spring Boot", "REST APIs"],
       Database: ["MySQL"],
     },
-    github: null,
-    demo: null,
   },
   {
     name: "Heart Attack Prediction via Retinal Imaging",
@@ -57,8 +53,6 @@ const projects = [
       "Backend / ML": ["Python", "TensorFlow", "OpenCV"],
       Database: ["Local image dataset"],
     },
-    github: null,
-    demo: null,
   },
 ];
 
@@ -71,28 +65,6 @@ const DifficultyStars = ({ level }) => (
     ))}
   </div>
 );
-
-const LootLink = ({ href, label }) => {
-  const disabled = !href;
-
-  return (
-    <a
-      href={disabled ? undefined : href}
-      target={disabled ? undefined : "_blank"}
-      rel={disabled ? undefined : "noopener noreferrer"}
-      aria-disabled={disabled}
-      className={`font-mono text-[10px] px-3 py-1.5 rounded border text-center
-        ${
-          disabled
-            ? "border-line text-slate cursor-not-allowed opacity-50"
-            : "border-amber text-amber hover:bg-amber/10 transition-colors"
-        }`}
-      onClick={(e) => disabled && e.preventDefault()}
-    >
-      {disabled ? `${label} (coming soon)` : label}
-    </a>
-  );
-};
 
 const ProjectCard = ({ project, delay, onOpen }) => (
   <motion.div
@@ -134,7 +106,7 @@ const ProjectCard = ({ project, delay, onOpen }) => (
     </ul>
 
     <p className="font-mono text-[10px] text-slate mb-2">WEAPONS USED</p>
-    <div className="flex flex-wrap gap-1.5 mb-4">
+    <div className="flex flex-wrap gap-1.5">
       {project.tech.map((t) => (
         <span
           key={t}
@@ -143,11 +115,6 @@ const ProjectCard = ({ project, delay, onOpen }) => (
           {t}
         </span>
       ))}
-    </div>
-
-    <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-      <LootLink href={project.github} label="GitHub" />
-      <LootLink href={project.demo} label="Live Demo" />
     </div>
 
     <p className="font-mono text-[9px] text-slate mt-3 text-center">
@@ -211,7 +178,7 @@ const ProjectModal = ({ project, onClose }) => (
           <p className="font-mono text-[10px] text-slate mb-3 tracking-wide">
             TECH STACK BREAKDOWN
           </p>
-          <div className="flex flex-col gap-3 mb-6">
+          <div className="flex flex-col gap-3">
             {Object.entries(project.breakdown).map(([category, items]) => (
               <div key={category}>
                 <p className="font-mono text-[10px] text-amber mb-1.5">
@@ -229,11 +196,6 @@ const ProjectModal = ({ project, onClose }) => (
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="flex gap-2">
-            <LootLink href={project.github} label="GitHub" />
-            <LootLink href={project.demo} label="Live Demo" />
           </div>
         </motion.div>
       </motion.div>
