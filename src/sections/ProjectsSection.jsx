@@ -296,10 +296,10 @@ const ProjectsSection = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={page}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ clipPath: "polygon(0 0, 0 0, 0 100%, 0 100%)" }}
+            animate={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+            exit={{ clipPath: "polygon(100% 0, 100% 0, 100% 100%, 100% 100%)" }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
             className="grid grid-cols-1 sm:grid-cols-2 gap-6"
           >
             {pageProjects.map((project, i) => (
