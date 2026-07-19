@@ -54,6 +54,65 @@ const projects = [
       Database: ["Local image dataset"],
     },
   },
+  {
+    name: "AQI Index",
+    difficulty: 3,
+    tech: ["Java", "JavaScript"],
+    points: [
+      "Web app that tracks and displays Air Quality Index data for locations in real time.",
+      "Java backend serving air quality data to a JavaScript-driven front end.",
+    ],
+    longDescription:
+      "A tool for checking Air Quality Index readings for a given location, with a Java backend handling data retrieval and processing, and a JavaScript front end for displaying current readings to the user.",
+    breakdown: {
+      Frontend: ["JavaScript", "HTML5", "CSS3"],
+      Backend: ["Java"],
+    },
+  },
+  {
+    name: "Practo Clone",
+    difficulty: 3,
+    tech: ["Java", "JavaScript"],
+    points: [
+      "A clone of Practo, focused on doctor listings and appointment booking flows.",
+      "Java backend handling core logic, JavaScript front end for browsing and booking.",
+    ],
+    longDescription:
+      "A clone of the Practo healthcare platform, recreating core flows like browsing doctors and booking appointments. Java handles the backend logic, with a JavaScript front end for the user-facing booking experience.",
+    breakdown: {
+      Frontend: ["JavaScript", "HTML5", "CSS3"],
+      Backend: ["Java"],
+    },
+  },
+  {
+    name: "Zentry",
+    difficulty: 2,
+    tech: ["HTML5", "CSS3", "JavaScript"],
+    points: [
+      "A front-end focused project built with core HTML5, CSS3, and JavaScript.",
+      "Focused on clean UI structure and interactivity without a framework.",
+    ],
+    longDescription:
+      "A front-end project built with plain HTML5, CSS3, and JavaScript — no framework — focused on practicing core web fundamentals: layout, styling, and DOM interactivity.",
+    breakdown: {
+      Frontend: ["HTML5", "CSS3", "JavaScript"],
+    },
+  },
+  {
+    name: "Employee Management System",
+    difficulty: 2,
+    tech: ["Java", "JavaScript"],
+    points: [
+      "System to manage employee records — adding, updating, and viewing employee data.",
+      "Java backend with a JavaScript front end for HR-style record management.",
+    ],
+    longDescription:
+      "A system for managing employee records — creating, updating, and viewing employee data through a simple interface, backed by a Java service layer handling the core logic.",
+    breakdown: {
+      Frontend: ["JavaScript", "HTML5", "CSS3"],
+      Backend: ["Java"],
+    },
+  },
 ];
 
 const DifficultyStars = ({ level }) => (
@@ -203,8 +262,19 @@ const ProjectModal = ({ project, onClose }) => (
   </AnimatePresence>
 );
 
+const ITEMS_PER_PAGE = 2;
+
 const ProjectsSection = () => {
   const [selected, setSelected] = useState(null);
+  const [page, setPage] = useState(0);
+
+  const totalPages = Math.ceil(projects.length / ITEMS_PER_PAGE);
+  const pageProjects = projects.slice(
+    page * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+  );
+
+  const goTo = (n) => setPage(Math.max(0, Math.min(totalPages - 1, n)));
 
   return (
     <section
@@ -222,15 +292,69 @@ const ProjectsSection = () => {
         PROJECTS BUILT AND SHIPPED
       </p>
 
-      <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, i) => (
-          <ProjectCard
-            key={project.name}
-            project={project}
-            delay={i * 0.1}
-            onOpen={setSelected}
-          />
+      <div className="w-full max-w-3xl min-h-[420px]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={page}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
+            {pageProjects.map((project, i) => (
+              <ProjectCard
+                key={project.name}
+                project={project}
+                delay={i * 0.1}
+                onOpen={setSelected}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="flex items-center gap-3 mt-10">
+        <button
+          onClick={() => goTo(page - 1)}
+          disabled={page === 0}
+          aria-label="Previous page"
+          className="font-mono text-sm w-8 h-8 rounded-full border border-line text-slate
+                     hover:border-amber hover:text-amber transition-colors
+                     disabled:opacity-30 disabled:hover:border-line disabled:hover:text-slate
+                     disabled:cursor-not-allowed"
+        >
+          ←
+        </button>
+
+        {Array.from({ length: totalPages }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to page ${i + 1}`}
+            aria-current={i === page}
+            className={`font-mono text-xs w-8 h-8 rounded-full border transition-colors
+              ${
+                i === page
+                  ? "border-amber text-amber"
+                  : "border-line text-slate hover:text-paper"
+              }`}
+          >
+            {i + 1}
+          </button>
         ))}
+
+        <button
+          onClick={() => goTo(page + 1)}
+          disabled={page === totalPages - 1}
+          aria-label="Next page"
+          className="font-mono text-sm w-8 h-8 rounded-full border border-line text-slate
+                     hover:border-amber hover:text-amber transition-colors
+                     disabled:opacity-30 disabled:hover:border-line disabled:hover:text-slate
+                     disabled:cursor-not-allowed"
+        >
+          →
+        </button>
       </div>
 
       <ProjectModal project={selected} onClose={() => setSelected(null)} />
